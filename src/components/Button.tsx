@@ -7,11 +7,23 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   iconName: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
   selected: boolean;
+  onClick: () => void;
 }
 
-export function Button({ iconName, title, selected, ...rest }: ButtonProps) {
+export function Button({
+  iconName,
+  title,
+  selected,
+  onClick,
+  ...rest
+}: ButtonProps) {
   return (
-    <button type="button" {...(selected && { className: 'selected' })} {...rest}>
+    <button
+      type="button"
+      {...(selected && { className: 'selected' })}
+      {...rest}
+      onClick={onClick}
+    >
       <Icon name={iconName} color={selected ? '#FAE800' : '#FBFBFB'} />
       {title}
     </button>
